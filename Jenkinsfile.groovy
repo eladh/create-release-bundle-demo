@@ -78,6 +78,8 @@ def getBuildDockerImageManifestChecksum (build_number) {
             def jsonSlurper = new JsonSlurper()
             def buildInfo = jsonSlurper.parseText("${buildInfoText}")
 
+            println buildInfo
+
             return buildInfo.buildInfo.modules[0].dependencies.find{it.id == "manifest.json"}.sha1
         } catch (Exception e) {
             println "Caught exception finding latest helm chart build number. Message ${e.message}"
