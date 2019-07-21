@@ -78,7 +78,7 @@ def getBuildDockerImageManifestChecksum (build_number) {
             def jsonSlurper = new JsonSlurper()
             def buildInfo = jsonSlurper.parseText("${buildInfoText}")
 
-            println buildInfo
+            println buildInfo.buildInfo.modules[0].dependencies
 
             return buildInfo.buildInfo.modules[0].dependencies.find{it.id == "manifest.json"}.sha1
         } catch (Exception e) {
